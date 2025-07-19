@@ -1,0 +1,26 @@
+name: Lint
+on:
+  push:
+    branches: 
+      - '*'
+  pull_request:
+    branches: 
+      - '*'
+jobs:
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Node.js v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm i -g pnpm
+      - run: pnpm i
+      - run: npm run test
