@@ -58,7 +58,7 @@
     "discord-api-types": "^0.37.117",
     "fetch-cookie": "^2.1.0",
     "tough-cookie": "^4.1.4",
-    "undici": "^6.21.0",
+    "undici": "^7.12.0",
     "ws": "^8.16.0"
   },
   "engines": {
