@@ -65,7 +65,7 @@
     "node": ">=20.18"
   },
   "devDependencies": {
-    "@commitlint/config-angular": "^16.0.0",
+    "@commitlint/config-angular": "^19.8.1",
     "@types/debug": "^4.1.12",
     "@types/node": "^22.10.7",
     "@types/ws": "^8.5.10",
