@@ -4,7 +4,10 @@ const EventEmitter = typeof window !== 'undefined' ? require('events') : require
 const fs = typeof window !== 'undefined' ? null : require('node:fs');
 const path = typeof window !== 'undefined' ? null : require('node:path');
 const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
-const { setTimeout: sleep } = require('node:timers/promises');
+// Use browser-compatible sleep implementation
+const sleep = typeof window !== 'undefined' 
+  ? (ms) => new Promise(resolve => setTimeout(resolve, ms))
+  : require('node:timers/promises').setTimeout;
 const { Collection } = require('@discordjs/collection');
 const Shard = require('./Shard');
 const { Error, TypeError, RangeError } = require('../errors');

@@ -67,12 +67,13 @@ import {
   VoiceChannelEffectSendAnimationType,
   GatewayVoiceChannelEffectSendDispatchData,
 } from 'discord-api-types/v10';
-import { ChildProcess, ChildProcessWithoutNullStreams } from 'node:child_process';
-import { EventEmitter } from 'node:events';
-import { AgentOptions } from 'node:https';
+// Browser-compatible type imports - these modules are disabled in browser environments
+import type { ChildProcess, ChildProcessWithoutNullStreams } from 'node:child_process';
+import { EventEmitter } from 'events';
+import type { AgentOptions } from 'node:https';
 import { Response, ProxyAgent } from 'undici';
-import { Readable, Writable, Stream } from 'node:stream';
-import { MessagePort, Worker } from 'node:worker_threads';
+import type { Readable, Writable, Stream } from 'node:stream';
+import type { MessagePort, Worker } from 'node:worker_threads';
 import * as WebSocket from 'ws';
 import {
   ActivityTypes,
@@ -179,7 +180,8 @@ import {
   RawWidgetData,
   RawWidgetMemberData,
 } from './rawDataTypes';
-import { Socket } from 'node:dgram';
+// Browser-compatible type import - dgram is disabled in browser environments
+import type { Socket } from 'node:dgram';
 
 //#region Classes
 

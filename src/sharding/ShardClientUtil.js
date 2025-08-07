@@ -42,7 +42,7 @@ class ShardClientUtil {
         process.send({ _reconnecting: true });
       });
     } else if (mode === 'worker') {
-      this.parentPort = require('node:worker_threads').parentPort;
+      this.parentPort = typeof window !== 'undefined' ? null : require('node:worker_threads').parentPort;
       this.parentPort.on('message', this._handleMessage.bind(this));
       client.on('ready', () => {
         this.parentPort.postMessage({ _ready: true });
