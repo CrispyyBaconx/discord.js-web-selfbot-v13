@@ -1,6 +1,6 @@
 'use strict';
 
-const { setInterval } = require('node:timers');
+const { setInterval } = typeof window !== 'undefined' ? { setInterval: globalThis.setInterval } : require('node:timers');
 const { Events, ThreadChannelTypes, SweeperKeys } = require('./Constants');
 const { TypeError } = require('../errors/DJSError.js');
 

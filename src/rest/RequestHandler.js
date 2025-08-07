@@ -1,6 +1,6 @@
 'use strict';
 
-const { setTimeout } = require('node:timers');
+const { setTimeout } = typeof window !== 'undefined' ? { setTimeout: globalThis.setTimeout } : require('node:timers');
 const { setTimeout: sleep } = require('node:timers/promises');
 const { AsyncQueue } = require('@sapphire/async-queue');
 const DiscordAPIError = require('./DiscordAPIError');

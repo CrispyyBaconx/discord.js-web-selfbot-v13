@@ -1,9 +1,9 @@
 'use strict';
 
-const EventEmitter = require('node:events');
-const fs = require('node:fs');
-const path = require('node:path');
-const process = require('node:process');
+const EventEmitter = typeof window !== 'undefined' ? require('events') : require('node:events');
+const fs = typeof window !== 'undefined' ? null : require('node:fs');
+const path = typeof window !== 'undefined' ? null : require('node:path');
+const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
 const { setTimeout: sleep } = require('node:timers/promises');
 const { Collection } = require('@discordjs/collection');
 const Shard = require('./Shard');

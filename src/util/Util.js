@@ -1,9 +1,11 @@
 'use strict';
 
-const { Agent } = require('node:http');
-const { parse } = require('node:path');
-const process = require('node:process');
-const { setTimeout } = require('node:timers');
+// Disable HTTP agent in browser (not needed for fetch)
+const { Agent } = typeof window !== 'undefined' ? { Agent: null } : require('node:http');
+// Disable path parsing in browser (not needed for URLs)
+const { parse } = typeof window !== 'undefined' ? { parse: () => ({}) } : require('node:path');
+const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
+const { setTimeout } = typeof window !== 'undefined' ? { setTimeout: globalThis.setTimeout } : require('node:timers');
 const { Collection } = require('@discordjs/collection');
 const { fetch } = require('undici');
 const { Colors, Events } = require('./Constants');

@@ -2,10 +2,9 @@
 'use strict';
 
 const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
-// eslint-disable-next-line no-undef
-const { setInterval } = typeof window !== 'undefined' ? { setInterval: window.setInterval } : require('node:timers');
-// eslint-disable-next-line no-undef
-const { setTimeout } = typeof window !== 'undefined' ? { setTimeout: window.setTimeout } : require('node:timers');
+// Use browser-compatible timers
+const { setInterval } = typeof window !== 'undefined' ? { setInterval: globalThis.setInterval } : require('node:timers');
+const { setTimeout } = typeof window !== 'undefined' ? { setTimeout: globalThis.setTimeout } : require('node:timers');
 const { Collection } = require('@discordjs/collection');
 const BaseClient = require('./BaseClient');
 const ActionsManager = require('./actions/ActionsManager');

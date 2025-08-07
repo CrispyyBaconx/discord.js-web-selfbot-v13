@@ -1,7 +1,9 @@
 'use strict';
 
-const Buffer = require('node:buffer').Buffer;
-const { setTimeout } = require('node:timers');
+// Use browser-compatible buffer
+const { Buffer } = typeof window !== 'undefined' ? require('buffer') : require('node:buffer');
+// Use global setTimeout in browser, node:timers in Node.js
+const { setTimeout } = typeof window !== 'undefined' ? { setTimeout: globalThis.setTimeout } : require('node:timers');
 const makeFetchCookie = require('fetch-cookie');
 const { CookieJar } = require('tough-cookie');
 const { fetch: fetchOriginal, FormData, buildConnector, Client, ProxyAgent } = require('undici');

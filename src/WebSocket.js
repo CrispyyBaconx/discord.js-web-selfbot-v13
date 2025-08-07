@@ -1,14 +1,21 @@
 'use strict';
 
 let erlpack;
-const { Buffer } = require('buffer');
+// Use browser-compatible buffer if available
+const { Buffer } = typeof window !== 'undefined' ? require('buffer') : require('node:buffer');
 
 try {
-  erlpack = require('erlpack');
-  if (!erlpack.pack) erlpack = null;
+  // Erlpack is Node.js specific, disable in browser
+  if (typeof window === 'undefined') {
+    erlpack = require('erlpack');
+    if (!erlpack.pack) erlpack = null;
+  } else {
+    erlpack = null; // Disable erlpack in browser
+  }
 } catch {} // eslint-disable-line no-empty
 
-exports.WebSocket = require('ws');
+// Use browser's native WebSocket if available, fallback to ws for Node.js
+exports.WebSocket = typeof WebSocket !== 'undefined' ? WebSocket : require('ws');
 
 const ab = new TextDecoder();
 

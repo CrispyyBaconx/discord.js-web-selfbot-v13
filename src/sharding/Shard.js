@@ -1,9 +1,9 @@
 'use strict';
 
-const EventEmitter = require('node:events');
-const path = require('node:path');
-const process = require('node:process');
-const { setTimeout } = require('node:timers');
+const EventEmitter = typeof window !== 'undefined' ? require('events') : require('node:events');
+const path = typeof window !== 'undefined' ? null : require('node:path');
+const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
+const { setTimeout } = typeof window !== 'undefined' ? { setTimeout: globalThis.setTimeout } : require('node:timers');
 const { setTimeout: sleep } = require('node:timers/promises');
 const { Error } = require('../errors');
 const Util = require('../util/Util');
@@ -21,8 +21,8 @@ class Shard extends EventEmitter {
   constructor(manager, id) {
     super();
 
-    if (manager.mode === 'process') childProcess = require('node:child_process');
-    else if (manager.mode === 'worker') Worker = require('node:worker_threads').Worker;
+    if (manager.mode === 'process') childProcess = typeof window !== 'undefined' ? null : require('node:child_process');
+    else if (manager.mode === 'worker') Worker = typeof window !== 'undefined' ? null : require('node:worker_threads').Worker;
 
     /**
      * Manager that created the shard

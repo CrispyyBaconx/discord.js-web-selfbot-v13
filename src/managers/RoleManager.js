@@ -1,6 +1,6 @@
 'use strict';
 
-const process = require('node:process');
+const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
 const { Collection } = require('@discordjs/collection');
 const CachedManager = require('./CachedManager');
 const { TypeError } = require('../errors');

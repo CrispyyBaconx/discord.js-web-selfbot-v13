@@ -1,6 +1,6 @@
 'use strict';
 
-const { Buffer } = require('node:buffer');
+const { Buffer } = typeof window !== 'undefined' ? require('buffer') : require('node:buffer');
 const BaseMessageComponent = require('./BaseMessageComponent');
 const MessageEmbed = require('./MessageEmbed');
 const { RangeError, Error: DjsError } = require('../errors');

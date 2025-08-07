@@ -1,8 +1,8 @@
 /* eslint-disable newline-per-chained-call */
 'use strict';
 
-const { Buffer } = require('node:buffer');
-const { setTimeout } = require('node:timers');
+const { Buffer } = typeof window !== 'undefined' ? require('buffer') : require('node:buffer');
+const { setTimeout } = typeof window !== 'undefined' ? { setTimeout: globalThis.setTimeout } : require('node:timers');
 const { Collection } = require('@discordjs/collection');
 const CachedManager = require('./CachedManager');
 const { Error, TypeError, RangeError } = require('../errors');

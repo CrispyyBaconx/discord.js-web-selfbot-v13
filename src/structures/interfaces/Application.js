@@ -1,6 +1,6 @@
 'use strict';
 
-const process = require('node:process');
+const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
 const { ApplicationFlags } = require('../../util/ApplicationFlags');
 const { ClientApplicationAssetTypes, Endpoints } = require('../../util/Constants');
 const Permissions = require('../../util/Permissions');

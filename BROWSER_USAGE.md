@@ -2,21 +2,24 @@
 
 This is a modified version of discord.js-selfbot-v13 that has been gutted to work in browser environments, specifically for React hooks.
 
-## What was removed
+## What was fixed for browser compatibility
 
-- Voice functionality (VoiceConnection, VoiceManager, audio/video processing)
-- Node.js-specific modules (child_process, fs, path, etc.)
-- Sharding functionality
-- Remote authentication (QR code login)
-- Any dependencies that don't work in browsers
+- **WebSocket Implementation**: Replaced Node.js `ws` library with browser's native WebSocket API
+- **Buffer Support**: Added browser-compatible buffer polyfill fallbacks
+- **Node.js Built-ins**: All `node:` imports now have browser-compatible fallbacks
+- **Process & Timers**: Replaced Node.js process and timers with browser equivalents
+- **Sharding**: Disabled Node.js child_process functionality for browser use
+- **File System**: Disabled fs/path operations that don't work in browsers
 
-## What remains
+## What remains fully functional
 
-- Core client functionality
-- WebSocket gateway connection
+- Core Discord client functionality
+- WebSocket gateway connection (now browser-compatible)
 - Message receiving and sending
-- Basic Discord API functionality
 - User authentication via token
+- Event handling (messageCreate, ready, etc.)
+- Channel and guild management
+- Basic Discord API functionality
 
 ## React Hook Example
 
@@ -96,6 +99,31 @@ function MyDiscordComponent() {
 }
 ```
 
+## Next.js Specific Setup
+
+For Next.js projects, you may need to install the `buffer` polyfill:
+
+```bash
+npm install buffer
+```
+
+Then add this to your `next.config.js`:
+
+```javascript
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  webpack: (config) => {
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      "buffer": require.resolve("buffer"),
+    };
+    return config;
+  },
+};
+
+module.exports = nextConfig;
+```
+
 ## Important Notes
 
 1. **Self-bot Usage**: This is for educational purposes. Using self-bots violates Discord's ToS.
@@ -104,7 +132,7 @@ function MyDiscordComponent() {
 
 3. **CORS Issues**: You may need to configure CORS or use a proxy for API calls.
 
-4. **WebSocket**: The WebSocket connection should work in browsers, but you may need additional configuration for some bundlers.
+4. **WebSocket**: The WebSocket connection now uses the browser's native WebSocket API.
 
 ## Bundler Configuration
 

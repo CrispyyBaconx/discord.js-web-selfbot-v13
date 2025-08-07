@@ -1,6 +1,6 @@
 'use strict';
 
-const process = require('node:process');
+const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
 const Base = require('./Base');
 const { PrivacyLevels } = require('../util/Constants');
 const SnowflakeUtil = require('../util/SnowflakeUtil');

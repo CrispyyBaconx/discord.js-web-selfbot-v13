@@ -1,8 +1,8 @@
 'use strict';
 
-const { Buffer } = require('node:buffer');
-const fs = require('node:fs');
-const path = require('node:path');
+const { Buffer } = typeof window !== 'undefined' ? require('buffer') : require('node:buffer');
+const fs = typeof window !== 'undefined' ? null : require('node:fs');
+const path = typeof window !== 'undefined' ? null : require('node:path');
 const stream = require('node:stream');
 const { fetch } = require('undici');
 const { Error: DiscordError, TypeError } = require('../errors');

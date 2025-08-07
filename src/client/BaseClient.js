@@ -1,5 +1,6 @@
 'use strict';
 
+// Use browser-compatible EventEmitter and process
 const EventEmitter = typeof window !== 'undefined' ? require('events') : require('node:events');
 const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
 const RESTManager = require('../rest/RESTManager');

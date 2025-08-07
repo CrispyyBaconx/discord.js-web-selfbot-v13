@@ -1,6 +1,6 @@
 'use strict';
 
-const process = require('node:process');
+const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
 const Action = require('./Action');
 const { Events } = require('../../util/Constants');
 

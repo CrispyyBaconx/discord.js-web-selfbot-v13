@@ -1,7 +1,7 @@
 'use strict';
 
-const process = require('node:process');
-const { setTimeout } = require('node:timers');
+const process = typeof window !== 'undefined' ? { env: {}, emitWarning: () => {} } : require('node:process');
+const { setTimeout } = typeof window !== 'undefined' ? { setTimeout: globalThis.setTimeout } : require('node:timers');
 const { Collection } = require('@discordjs/collection');
 const CachedManager = require('./CachedManager');
 const { Guild } = require('../structures/Guild');

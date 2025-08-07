@@ -1,6 +1,6 @@
 'use strict';
 
-const { setInterval } = require('node:timers');
+const { setInterval } = typeof window !== 'undefined' ? { setInterval: globalThis.setInterval } : require('node:timers');
 const { Collection } = require('@discordjs/collection');
 const { _cleanupSymbol } = require('./Constants.js');
 const Sweepers = require('./Sweepers.js');

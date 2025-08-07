@@ -6,7 +6,7 @@ const MessagePayload = require('../MessagePayload');
 const { InteractionTypes, ApplicationCommandOptionTypes, Events } = require('../../util/Constants');
 const { Error } = require('../../errors');
 const SnowflakeUtil = require('../../util/SnowflakeUtil');
-const { setTimeout } = require('node:timers');
+const { setTimeout } = typeof window !== 'undefined' ? { setTimeout: globalThis.setTimeout } : require('node:timers');
 const { s } = require('@sapphire/shapeshift');
 const Util = require('../../util/Util');
 const validateName = stringName =>
