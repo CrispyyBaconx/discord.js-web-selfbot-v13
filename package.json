@@ -57,7 +57,7 @@
     "@sapphire/shapeshift": "^3.9.5",
     "discord-api-types": "^0.37.117",
     "fetch-cookie": "^2.1.0",
-    "tough-cookie": "^4.1.4",
+    "tough-cookie": "^6.0.0",
     "undici": "^6.21.0",
     "ws": "^8.16.0"
   },
